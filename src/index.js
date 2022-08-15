@@ -47,3 +47,28 @@ const renderMarkup = country => {
     countryInfo.innerHTML = markupList;
   }
 };
+
+const createListMarkup = country => {
+  return country
+    .map(
+      ({ name, flags }) =>
+        `<li><img src="${flags.png}" alt="${name.official}" width="40" height="20">${name.official}</li>`
+    )
+    .join('');
+};
+
+const createInfoMarkup = country => {
+  return country
+    .map(
+      ({ name, capital, population, flags, languages }) =>
+        `<h1><img src="${flags.png}" alt="${
+          name.official
+        }" width="90" height="70">${name.official}</h1>
+      <p>Capital: ${capital}</p>
+      <p>Population: ${population}</p>
+      <p>Languages: ${Object.values(languages)}</p>`
+    )
+    .join('');
+};
+
+inpText.addEventListener('input', debounce(inputHandler, DEBOUNCE_DELAY));
