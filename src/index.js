@@ -9,13 +9,13 @@ const inpText = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
-const cleanMarkup = ref => (ref.innerHTML = '');
+const clearContent = ref => (ref.innerHTML = '');
 
 const inputHandler = e => {
   const textInp = e.target.value.trim();
   if (!textInp) {
-    cleanMarkup(countryList);
-    cleanMarkup(countryInfo);
+    clearContent(countryList);
+    clearContent(countryInfo);
     return;
   }
 
@@ -30,19 +30,19 @@ const inputHandler = e => {
       renderMarkup(country);
     })
     .catch(error => {
-      cleanMarkup(countryList);
-      cleanMarkup(countryInfo);
+      clearContent(countryList);
+      clearContent(countryInfo);
       Notiflix.Notify.failure('Oops, there is no country with that name');
     });
 };
 
 const renderMarkup = country => {
   if (country.length === 1) {
-    cleanMarkup(countryList);
+    clearContent(countryList);
     const markupInfo = createInfoMarkup(country);
     countryInfo.innerHTML = markupInfo;
   } else {
-    cleanMarkup(countryInfo);
+    clearContent(countryInfo);
     const markupList = createListMarkup(country);
     countryInfo.innerHTML = markupList;
   }
